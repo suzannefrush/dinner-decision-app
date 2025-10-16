@@ -366,7 +366,7 @@ ${selectedRecipe.ingredients.map(ing => `• ${ing}`).join('\n')}
             </div>
 
             <div className="mb-6">
-              <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
+              <h3 className="text-lg font-semibold mb-3 flex items-center gap-2 text-[#225560]">
                 <ShoppingCart className="w-5 h-5" />
                 Shopping List
               </h3>
@@ -374,7 +374,7 @@ ${selectedRecipe.ingredients.map(ing => `• ${ing}`).join('\n')}
                 {selectedRecipe.ingredients.map((ing, idx) => (
                   <li key={idx} className="flex items-start gap-2">
                     <span className="text-orange-600 mt-1">•</span>
-                    <span>{ing}</span>
+                    <span className="text-[#225560]">{ing}</span>
                   </li>
                 ))}
               </ul>
