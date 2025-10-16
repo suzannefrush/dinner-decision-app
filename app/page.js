@@ -169,9 +169,9 @@ ${selectedRecipe.ingredients.map(ing => `• ${ing}`).join('\n')}
         <div className="text-center mb-8 pt-6">
           <div className="flex items-center justify-center gap-3 mb-2">
             <ChefHat className="w-10 h-10 text-orange-600" />
-            <h1 className="text-4xl font-bold text-gray-800">What's for Dinner?</h1>
+           <h1 className="text-4xl font-bold text-gray-800">What&apos;s for Dinner?</h1>
           </div>
-          <p className="text-gray-600">Let us decide so you don't have to</p>
+          <p className="text-gray-600">Let us decide so you don&apos;t have to</p>
         </div>
 
         <div className="flex gap-3 mb-6 flex-wrap justify-center">
