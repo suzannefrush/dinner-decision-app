@@ -263,7 +263,7 @@ ${selectedRecipe.ingredients.map(ing => `• ${ing}`).join('\n')}
                   type="text"
                   value={newRecipe.name}
                   onChange={(e) => setNewRecipe({...newRecipe, name: e.target.value})}
-                  className="w-full p-2 border rounded"
+                  className="w-full p-2 border rounded text-[#225560]"
                   placeholder="e.g., Chicken Tikka Masala"
                 />
               </div>
@@ -274,7 +274,7 @@ ${selectedRecipe.ingredients.map(ing => `• ${ing}`).join('\n')}
                     type="text"
                     value={newRecipe.cuisine}
                     onChange={(e) => setNewRecipe({...newRecipe, cuisine: e.target.value})}
-                    className="w-full p-2 border rounded"
+                    className="w-full p-2 border rounded text-[#225560]" 
                     placeholder="e.g., asian"
                   />
                 </div>
@@ -284,7 +284,7 @@ ${selectedRecipe.ingredients.map(ing => `• ${ing}`).join('\n')}
                     type="text"
                     value={newRecipe.mealType}
                     onChange={(e) => setNewRecipe({...newRecipe, mealType: e.target.value})}
-                    className="w-full p-2 border rounded"
+                    className="w-full p-2 border rounded text-[#225560]"
                     placeholder="e.g., soup"
                   />
                 </div>
@@ -294,7 +294,7 @@ ${selectedRecipe.ingredients.map(ing => `• ${ing}`).join('\n')}
                     type="number"
                     value={newRecipe.cookTime}
                     onChange={(e) => setNewRecipe({...newRecipe, cookTime: e.target.value})}
-                    className="w-full p-2 border rounded"
+                    className="w-full p-2 border rounded text-[#225560]"
                     placeholder="30"
                   />
                 </div>
@@ -304,7 +304,7 @@ ${selectedRecipe.ingredients.map(ing => `• ${ing}`).join('\n')}
                 <textarea
                   value={newRecipe.ingredients}
                   onChange={(e) => setNewRecipe({...newRecipe, ingredients: e.target.value})}
-                  className="w-full p-2 border rounded h-32"
+                  className="w-full p-2 border rounded h-32 text-[#225560]"
                   placeholder="1 lb chicken breast\n2 cups kale\n3 cloves garlic"
                 />
               </div>
@@ -314,7 +314,7 @@ ${selectedRecipe.ingredients.map(ing => `• ${ing}`).join('\n')}
                   type="text"
                   value={newRecipe.source}
                   onChange={(e) => setNewRecipe({...newRecipe, source: e.target.value})}
-                  className="w-full p-2 border rounded"
+                  className="w-full p-2 border rounded text-[#225560]"
                   placeholder="e.g., NY Times Cooking"
                 />
               </div>
