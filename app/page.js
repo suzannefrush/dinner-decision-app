@@ -309,9 +309,7 @@ ${selectedRecipe.ingredients.map(ing => `• ${ing}`).join('\n')}
                   value={newRecipe.ingredients}
                   onChange={(e) => setNewRecipe({...newRecipe, ingredients: e.target.value})}
                   className="w-full p-2 border rounded h-32"
-                  placeholder="1 lb chicken breast
-2 cups kale
-3 cloves garlic"
+                  placeholder="1 lb chicken breast\n2 cups kale\n3 cloves garlic"
                 />
               </div>
               <div>
