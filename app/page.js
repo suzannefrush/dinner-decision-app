@@ -122,10 +122,6 @@ ${selectedRecipe.ingredients.map(ing => `• ${ing}`).join('\n')}
       cuisine: newRecipe.cuisine.toLowerCase(),
       meal_type: newRecipe.mealType.toLowerCase(),
       cook_time: parseInt(newRecipe.cookTime),
-      main_ingredients: ingredientList.map(ing => {
-        const match = ing.match(/[a-zA-Z\s]+/);
-        return match ? match[0].trim().toLowerCase() : ing.toLowerCase();
-      }),
       ingredients: ingredientList,
       source: newRecipe.source || 'Personal collection'
     };
