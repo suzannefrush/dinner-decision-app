@@ -251,14 +251,14 @@ ${selectedRecipe.ingredients.map(ing => `• ${ing}`).join('\n')}
         {showAddRecipe && (
           <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-semibold">Add New Recipe</h2>
+              <h2 className="text-xl font-semibold text-[#225560]">Add New Recipe</h2>
               <button onClick={() => setShowAddRecipe(false)}>
                 <X className="w-5 h-5" />
               </button>
             </div>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium mb-1">Recipe Name *</label>
+                <label className="block text-sm font-medium mb-1 text-[#225560]">Recipe Name *</label>
                 <input
                   type="text"
                   value={newRecipe.name}
@@ -269,7 +269,7 @@ ${selectedRecipe.ingredients.map(ing => `• ${ing}`).join('\n')}
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-sm font-medium mb-1 text-[#310D20]">Cuisine *</label>
+                  <label className="block text-sm font-medium mb-1 text-[#225560]">Cuisine *</label>
                   <input
                     type="text"
                     value={newRecipe.cuisine}
@@ -279,7 +279,7 @@ ${selectedRecipe.ingredients.map(ing => `• ${ing}`).join('\n')}
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-1">Meal Type *</label>
+                  <label className="block text-sm font-medium mb-1 text-[#225560]">Meal Type *</label>
                   <input
                     type="text"
                     value={newRecipe.mealType}
@@ -289,7 +289,7 @@ ${selectedRecipe.ingredients.map(ing => `• ${ing}`).join('\n')}
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-1">Cook Time (min) *</label>
+                  <label className="block text-sm font-medium mb-1 text-[#225560]">Cook Time (min) *</label>
                   <input
                     type="number"
                     value={newRecipe.cookTime}
@@ -300,7 +300,7 @@ ${selectedRecipe.ingredients.map(ing => `• ${ing}`).join('\n')}
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1">Ingredients List (one per line) *</label>
+                <label className="block text-sm font-medium mb-1 text-[#225560]">Ingredients List (one per line) *</label>
                 <textarea
                   value={newRecipe.ingredients}
                   onChange={(e) => setNewRecipe({...newRecipe, ingredients: e.target.value})}
@@ -309,7 +309,7 @@ ${selectedRecipe.ingredients.map(ing => `• ${ing}`).join('\n')}
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1">Source (optional)</label>
+                <label className="block text-sm font-medium mb-1 text-[#225560]">Source (optional)</label>
                 <input
                   type="text"
                   value={newRecipe.source}
