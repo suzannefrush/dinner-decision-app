@@ -173,16 +173,16 @@ ${selectedRecipe.ingredients.map(ing => `• ${ing}`).join('\n')}
         <div className="flex gap-3 mb-6 flex-wrap justify-center">
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow hover:shadow-md transition-shadow"
+            className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow hover:shadow-md transition-shadow text-[#310D20]"
           >
-            <Filter className="w-5 h-5" />
+            <Filter className="w-5 h-5 text-[#310D20]" />
             Filters {Object.values(filters).some(f => f) && '✓'}
           </button>
           <button
             onClick={() => setShowAddRecipe(!showAddRecipe)}
-            className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow hover:shadow-md transition-shadow"
+            className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow hover:shadow-md transition-shadow text-[#310D20]"
           >
-            <Plus className="w-5 h-5" />
+            <Plus className="w-5 h-5 text-[#310D20]" />
             Add Recipe
           </button>
         </div>
@@ -190,51 +190,51 @@ ${selectedRecipe.ingredients.map(ing => `• ${ing}`).join('\n')}
         {showFilters && (
           <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-semibold">Filter Recipes</h2>
+              <h2 className="text-xl font-semibold text-[#310D20]">Filter Recipes</h2>
               <button onClick={() => setShowFilters(false)}>
-                <X className="w-5 h-5" />
+                <X className="w-5 h-5 text-[#310D20]" />
               </button>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium mb-1">Cuisine</label>
+                <label className="block text-sm font-medium mb-1 text-[#310D20]">Cuisine</label>
                 <select
                   value={filters.cuisine}
                   onChange={(e) => setFilters({...filters, cuisine: e.target.value})}
-                  className="w-full p-2 border rounded"
+                  className="w-full p-2 border rounded text-[#310D20]"
                 >
                   <option value="">Any</option>
                   {cuisineOptions.map(c => <option key={c} value={c}>{c}</option>)}
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1">Meal Type</label>
+                <label className="block text-sm font-medium mb-1 text-[#310D20]">Meal Type</label>
                 <select
                   value={filters.mealType}
                   onChange={(e) => setFilters({...filters, mealType: e.target.value})}
-                  className="w-full p-2 border rounded"
+                  className="w-full p-2 border rounded text-[#310D20]"
                 >
                   <option value="">Any</option>
                   {mealTypeOptions.map(m => <option key={m} value={m}>{m}</option>)}
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1">Max Cook Time (minutes)</label>
+                <label className="block text-sm font-medium mb-1 text-[#310D20]">Max Cook Time (minutes)</label>
                 <input
                   type="number"
                   value={filters.maxCookTime}
                   onChange={(e) => setFilters({...filters, maxCookTime: e.target.value})}
-                  className="w-full p-2 border rounded"
+                  className="w-full p-2 border rounded text-[#310D20]"
                   placeholder="e.g., 30"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1">Must Include Ingredient</label>
+                <label className="block text-sm font-medium mb-1 text-[#310D20]" >Must Include Ingredient</label>
                 <input
                   type="text"
                   value={filters.ingredient}
                   onChange={(e) => setFilters({...filters, ingredient: e.target.value})}
-                  className="w-full p-2 border rounded"
+                  className="w-full p-2 border rounded text-[#310D20]"
                   placeholder="e.g., kale"
                 />
               </div>
@@ -269,7 +269,7 @@ ${selectedRecipe.ingredients.map(ing => `• ${ing}`).join('\n')}
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-sm font-medium mb-1">Cuisine *</label>
+                  <label className="block text-sm font-medium mb-1 text-[#310D20]">Cuisine *</label>
                   <input
                     type="text"
                     value={newRecipe.cuisine}
