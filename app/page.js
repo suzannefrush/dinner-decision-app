@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { ChefHat, Filter, ShoppingCart, Share2, Plus, X, RefreshCw, Clock, Utensils } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
+import { turso } from '@/lib/turso';
 
 export default function Home() {
   const [recipes, setRecipes] = useState([]);
@@ -27,7 +27,7 @@ export default function Home() {
     source: ''
   });
 
-  // Load recipes from Supabase
+  // Load recipes from Turso
   useEffect(() => {
     loadRecipes();
     
@@ -39,12 +39,14 @@ export default function Home() {
 
   const loadRecipes = async () => {
     try {
-      const { data, error } = await supabase
-        .from('recipes')
-        .select('*')
-        .order('created_at', { ascending: false });
+      const result = await turso.execute(
+        'SELECT * FROM recipes ORDER BY created_at DESC'
+      );
 
-      if (error) throw error;
+      const data = result.rows.map(row => ({
+        ...row,
+        ingredients: JSON.parse(row.ingredients),
+      }));
 
       setRecipes(data || []);
     } catch (error) {
@@ -117,23 +119,19 @@ ${selectedRecipe.ingredients.map(ing => `• ${ing}`).join('\n')}
 
     const ingredientList = newRecipe.ingredients.split('\n').filter(s => s.trim());
     
-    const recipe = {
-      name: newRecipe.name,
-      cuisine: newRecipe.cuisine.toLowerCase(),
-      meal_type: newRecipe.mealType.toLowerCase(),
-      cook_time: parseInt(newRecipe.cookTime),
-      ingredients: ingredientList,
-      source: newRecipe.source || 'Personal collection'
-    };
-    
     try {
-      const { error } = await supabase
-        .from('recipes')
-        .insert([recipe]);
+      await turso.execute({
+        sql: 'INSERT INTO recipes (name, cuisine, meal_type, cook_time, ingredients, source) VALUES (?, ?, ?, ?, ?, ?)',
+        args: [
+          newRecipe.name,
+          newRecipe.cuisine.toLowerCase(),
+          newRecipe.mealType.toLowerCase(),
+          parseInt(newRecipe.cookTime),
+          JSON.stringify(ingredientList),
+          newRecipe.source || 'Personal collection',
+        ],
+      });
 
-      if (error) throw error;
-
-      // Reload recipes
       await loadRecipes();
       
       setNewRecipe({
