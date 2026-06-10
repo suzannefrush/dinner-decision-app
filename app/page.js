@@ -58,13 +58,13 @@ export default function Home() {
       if (filters.cuisine && recipe.cuisine !== filters.cuisine) return false;
       if (filters.mealType && recipe.meal_type !== filters.mealType) return false;
       if (filters.maxCookTime && recipe.cook_time > parseInt(filters.maxCookTime)) return false;
-      if (filters.ingredient) {
-        const hasIngredient = recipe.ingredients.some(ing => 
-          ing.toLowerCase().includes(filters.ingredient.toLowerCase())
-        );
-        if (!hasIngredient) return false;
-        if (filters.proteinForward && Number(recipe.plan_supportive) !== 1) return false;
-      }
+if (filters.ingredient) {
+  const hasIngredient = recipe.ingredients.some(ing => 
+    ing.toLowerCase().includes(filters.ingredient.toLowerCase())
+  );
+  if (!hasIngredient) return false;
+}
+if (filters.proteinForward && Number(recipe.plan_supportive) !== 1) return false;  
       return true;
     });
   };
