@@ -14,7 +14,8 @@ export default function Home() {
     cuisine: '',
     mealType: '',
     maxCookTime: '',
-    ingredient: ''
+    ingredient: '',
+    proteinForward: true 
   });
 
   const [newRecipe, setNewRecipe] = useState({
@@ -62,6 +63,7 @@ export default function Home() {
           ing.toLowerCase().includes(filters.ingredient.toLowerCase())
         );
         if (!hasIngredient) return false;
+        if (filters.proteinForward && !recipe.plan_supportive) return false;
       }
       return true;
     });
@@ -169,7 +171,7 @@ ${selectedRecipe.ingredients.map(ing => `• ${ing}`).join('\n')}
             className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow hover:shadow-md transition-shadow text-[#310D20]"
           >
             <Filter className="w-5 h-5 text-[#310D20]" />
-            Filters {Object.values(filters).some(f => f) && '✓'}
+            Filters {['cuisine', 'mealType', 'maxCookTime', 'ingredient'].some(k => filters[k]) && '✓'}
           </button>
           <button
             onClick={() => setShowAddRecipe(!showAddRecipe)}
@@ -232,8 +234,20 @@ ${selectedRecipe.ingredients.map(ing => `• ${ing}`).join('\n')}
                 />
               </div>
             </div>
+            <div className="mt-4 rounded-lg px-4 py-3 flex items-center justify-between" style={{backgroundColor: '#f5f0eb'}}>
+  <div>
+    <p className="font-semibold text-sm text-[#310D20]">Protein Forward</p>
+    <p className="text-xs text-gray-500">Protein-centered, veg-prominent, not starch-heavy</p>
+  </div>
+  <button
+    onClick={() => setFilters({...filters, proteinForward: !filters.proteinForward})}
+    className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${filters.proteinForward ? 'bg-orange-600' : 'bg-gray-300'}`}
+  >
+    <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${filters.proteinForward ? 'translate-x-6' : 'translate-x-1'}`} />
+  </button>
+</div>
             <button
-              onClick={() => setFilters({cuisine: '', mealType: '', maxCookTime: '', ingredient: ''})}
+              onClick={() => setFilters({cuisine: '', mealType: '', maxCookTime: '', ingredient: '', proteinForward: true})}
               className="mt-4 text-orange-600 hover:text-orange-700 text-sm font-medium"
             >
               Clear all filters
