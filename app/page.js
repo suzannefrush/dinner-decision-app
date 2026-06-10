@@ -63,7 +63,7 @@ export default function Home() {
           ing.toLowerCase().includes(filters.ingredient.toLowerCase())
         );
         if (!hasIngredient) return false;
-        if (filters.proteinForward && !recipe.plan_supportive) return false;
+        if (filters.proteinForward && Number(recipe.plan_supportive) !== 1) return false;
       }
       return true;
     });
