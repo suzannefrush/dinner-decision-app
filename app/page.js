@@ -65,8 +65,9 @@ if (filters.ingredient) {
   if (!hasIngredient) return false;
 }
 if (filters.proteinForward && Number(recipe.plan_supportive) !== 1) return false;
+return true;
+    });
   };
-
   const selectRandomRecipe = () => {
     const filtered = getFilteredRecipes();
     const available = filtered.filter(r => r.id !== lastSelectedId);
