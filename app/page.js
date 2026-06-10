@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { ChefHat, Filter, ShoppingCart, Share2, Plus, X, RefreshCw, Clock, Utensils } from 'lucide-react';
-import { turso } from '@/lib/turso';
 
 export default function Home() {
   const [recipes, setRecipes] = useState([]);
@@ -27,7 +26,6 @@ export default function Home() {
     source: ''
   });
 
-  // Load recipes from Turso
   useEffect(() => {
     loadRecipes();
     
@@ -39,16 +37,10 @@ export default function Home() {
 
   const loadRecipes = async () => {
     try {
-      const result = await turso.execute(
-        'SELECT * FROM recipes ORDER BY created_at DESC'
-      );
-
-      const data = result.rows.map(row => ({
-        ...row,
-        ingredients: JSON.parse(row.ingredients),
-      }));
-
-      setRecipes(data || []);
+      const res = await fetch('/api/recipes');
+      if (!res.ok) throw new Error('Failed to load');
+      const data = await res.json();
+      setRecipes(data);
     } catch (error) {
       console.error('Error loading recipes:', error);
       alert('Error loading recipes. Please refresh the page.');
@@ -120,17 +112,20 @@ ${selectedRecipe.ingredients.map(ing => `• ${ing}`).join('\n')}
     const ingredientList = newRecipe.ingredients.split('\n').filter(s => s.trim());
     
     try {
-      await turso.execute({
-        sql: 'INSERT INTO recipes (name, cuisine, meal_type, cook_time, ingredients, source) VALUES (?, ?, ?, ?, ?, ?)',
-        args: [
-          newRecipe.name,
-          newRecipe.cuisine.toLowerCase(),
-          newRecipe.mealType.toLowerCase(),
-          parseInt(newRecipe.cookTime),
-          JSON.stringify(ingredientList),
-          newRecipe.source || 'Personal collection',
-        ],
+      const res = await fetch('/api/recipes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: newRecipe.name,
+          cuisine: newRecipe.cuisine.toLowerCase(),
+          meal_type: newRecipe.mealType.toLowerCase(),
+          cook_time: parseInt(newRecipe.cookTime),
+          ingredients: ingredientList,
+          source: newRecipe.source || 'Personal collection',
+        }),
       });
+
+      if (!res.ok) throw new Error('Failed to add');
 
       await loadRecipes();
       
@@ -163,7 +158,7 @@ ${selectedRecipe.ingredients.map(ing => `• ${ing}`).join('\n')}
         <div className="text-center mb-8 pt-6">
           <div className="flex items-center justify-center gap-3 mb-2">
             <ChefHat className="w-10 h-10 text-orange-600" />
-           <h1 className="text-4xl font-bold text-gray-800">What is for Dinner?</h1>
+            <h1 className="text-4xl font-bold text-gray-800">What is for Dinner?</h1>
           </div>
           <p className="text-gray-600">Let us decide so you do not have to</p>
         </div>
@@ -227,7 +222,7 @@ ${selectedRecipe.ingredients.map(ing => `• ${ing}`).join('\n')}
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1 text-[#310D20]" >Must Include Ingredient</label>
+                <label className="block text-sm font-medium mb-1 text-[#310D20]">Must Include Ingredient</label>
                 <input
                   type="text"
                   value={filters.ingredient}
@@ -272,7 +267,7 @@ ${selectedRecipe.ingredients.map(ing => `• ${ing}`).join('\n')}
                     type="text"
                     value={newRecipe.cuisine}
                     onChange={(e) => setNewRecipe({...newRecipe, cuisine: e.target.value})}
-                    className="w-full p-2 border rounded text-[#225560]" 
+                    className="w-full p-2 border rounded text-[#225560]"
                     placeholder="e.g., asian"
                   />
                 </div>
@@ -303,7 +298,7 @@ ${selectedRecipe.ingredients.map(ing => `• ${ing}`).join('\n')}
                   value={newRecipe.ingredients}
                   onChange={(e) => setNewRecipe({...newRecipe, ingredients: e.target.value})}
                   className="w-full p-2 border rounded h-32 text-[#225560]"
-                  placeholder="1 lb chicken breast\n2 cups kale\n3 cloves garlic"
+                  placeholder="1 lb chicken breast&#10;2 cups kale&#10;3 cloves garlic"
                 />
               </div>
               <div>
