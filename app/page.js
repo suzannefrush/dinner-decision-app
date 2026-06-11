@@ -171,7 +171,7 @@ export default function Home() {
   </div>
 </header>
 
-          <div className="flex-1 space-y-8">
+          <div className="space-y-8">
             {/* Cuisine */}
             <div>
               <label className={`${label} mb-3 block`}>Cuisine origin</label>
