@@ -153,13 +153,22 @@ export default function Home() {
       <div className="max-w-6xl w-full bg-white rounded-2xl shadow-2xl border border-ink/10 flex flex-col lg:flex-row overflow-hidden min-h-screen">
 
         {/* Sidebar */}
-        <aside className="className="w-full lg:w-80 lg:shrink-0 bg-panel border-b lg:border-b-0 lg:border-r border-ink/10 p-8 lg:p-10 flex flex-col lg:sticky lg:top-0 lg:self-stretch lg:overflow-y-auto">
-          <header className="mb-10">
-            <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-ink-muted block mb-2">
-              Curation
-            </span>
-            <h2 className="text-3xl font-serif italic text-ink leading-tight">The Pantry</h2>
-          </header>
+<header className="mb-6">
+  <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-ink-muted block mb-2">
+    Curation
+  </span>
+  <div className="flex items-baseline justify-between">
+    <h2 className="text-3xl font-serif italic text-ink leading-tight">The Pantry</h2>
+    {activeFilterCount > 0 && (
+      <button
+        onClick={clearFilters}
+        className="font-mono text-[10px] tracking-[0.18em] uppercase text-clay hover:text-ink transition-colors"
+      >
+        Clear
+      </button>
+    )}
+  </div>
+</header>
 
           <div className="flex-1 space-y-8">
             {/* Cuisine */}
@@ -260,17 +269,10 @@ export default function Home() {
               </button>
             </div>
 
-            {activeFilterCount > 0 && (
-              <button
-                onClick={clearFilters}
-                className="font-mono text-[10px] tracking-[0.18em] uppercase text-ink-muted hover:text-clay transition-colors"
-              >
-                Clear preferences
-              </button>
-            )}
+    
           </div>
 
-          <footer className="mt-10 pt-6">
+          <footer className="mt-6 pt-4">
             <button
               onClick={selectRandomRecipe}
               disabled={matchCount === 0 || rolling || loading}
