@@ -150,10 +150,10 @@ export default function Home() {
 
   return (
     <div className="min-h-screen w-full bg-page text-ink p-4 lg:p-10 flex items-center justify-center font-sans">
-      <div className="max-w-6xl w-full bg-white rounded-2xl shadow-2xl border border-ink/10 flex flex-col lg:flex-row overflow-hidden min-h-screen">
+      <div className="max-w-6xl w-full bg-white rounded-2xl shadow-2xl border border-ink/10 flex flex-col lg:flex-row overflow-hidden min-h-screen items-stretch"">
 
         {/* Sidebar */}
-    <aside className="w-full lg:w-80 lg:shrink-0 bg-panel border-b lg:border-b-0 lg:border-r border-ink/10 p-8 lg:p-10 flex flex-col lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto">
+    <aside className="w-full lg:w-80 lg:shrink-0 bg-panel border-b lg:border-b-0 lg:border-r border-ink/10 p-8 lg:p-10 flex flex-col">
 <header className="mb-6">
   <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-ink-muted block mb-2">
     Curation
@@ -273,7 +273,7 @@ export default function Home() {
     
           </div>
 
-          <footer className="mt-6 pt-4">
+          <footer className="sticky bottom-0 bg-panel mt-6 pt-4 pb-2">
             <button
               onClick={selectRandomRecipe}
               disabled={matchCount === 0 || rolling || loading}
