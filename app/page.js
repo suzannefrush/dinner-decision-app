@@ -153,7 +153,7 @@ export default function Home() {
       <div className="max-w-6xl w-full bg-white rounded-2xl shadow-2xl border border-ink/10 flex flex-col lg:flex-row overflow-hidden min-h-[640px]">
 
         {/* Sidebar */}
-        <aside className="w-full lg:w-80 lg:shrink-0 bg-panel border-b lg:border-b-0 lg:border-r border-ink/10 p-8 lg:p-10 flex flex-col">
+        <aside className="w-full lg:w-80 lg:shrink-0 bg-panel border-b lg:border-b-0 lg:border-r border-ink/10 p-8 lg:p-10 flex flex-col lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto">
           <header className="mb-10">
             <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-ink-muted block mb-2">
               Curation
