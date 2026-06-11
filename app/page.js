@@ -334,7 +334,7 @@ export default function Home() {
                         rel="noopener noreferrer"
                         className="text-[15px] text-ink border-b border-clay hover:text-clay inline-flex items-center gap-1"
                       >
-                        Open
+                        {new URL(selectedRecipe.source).hostname.replace(/^www\./, '')}
                         <ExternalLink className="w-3 h-3" strokeWidth={2} />
                       </a>
                     ) : (
