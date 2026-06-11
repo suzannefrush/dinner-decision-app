@@ -325,7 +325,7 @@ export default function Home() {
                   <MetaField label="Time" value={`${selectedRecipe.cook_time} min`} mono />
                   <MetaField label="Origin" value={selectedRecipe.cuisine} />
                   <MetaField label="Form" value={selectedRecipe.meal_type} />
-                  <div className="space-y-1">
+                  <div className="flex flex-col space-y-1">
                     <span className={label}>Source</span>
                     {selectedRecipe.source && /^https?:\/\//.test(selectedRecipe.source) ? (
                       <a
